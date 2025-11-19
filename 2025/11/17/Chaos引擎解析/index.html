@@ -17,22 +17,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
-  <title>Chaos引擎解析 - Caint0w0</title>
+  <title>Chaos引擎解析1 架构分析 - Caint0w0</title>
 
   
-    <meta name="description" content="Chaos引擎解析">
+    <meta name="description" content="1 Chaos的主要类这部分架构和各类主要作用主要参考原文 为了方便查阅先搬到这里 1.1 主要类图           1.2 物理世界1.2.1 UWorldUWorld是代表由Actor构成的整个游戏世界，它持有一个FPhysScene来代表物理世界，可以类比为渲染中的FScene，物理世界的步进(Advance)初始也由UWorld::Tick()发起。UWorld与物理相关的功能一般在P">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Chaos引擎解析">
-<meta property="og:url" content="http://caint0w0.github.io/2025/11/17/Chaos%E5%BC%95%E6%93%8E%E8%A7%A3%E6%9E%90/">
+<meta property="og:title" content="Chaos引擎解析1 架构分析">
+<meta property="og:url" content="http://www.caint0w0.me/2025/11/17/Chaos%E5%BC%95%E6%93%8E%E8%A7%A3%E6%9E%90/">
 <meta property="og:site_name" content="Caint0w0">
-<meta property="og:description" content="Chaos引擎解析">
+<meta property="og:description" content="1 Chaos的主要类这部分架构和各类主要作用主要参考原文 为了方便查阅先搬到这里 1.1 主要类图           1.2 物理世界1.2.1 UWorldUWorld是代表由Actor构成的整个游戏世界，它持有一个FPhysScene来代表物理世界，可以类比为渲染中的FScene，物理世界的步进(Advance)初始也由UWorld::Tick()发起。UWorld与物理相关的功能一般在P">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://caint0w0.github.io/asset/images/avatar.png">
+<meta property="og:image" content="http://www.caint0w0.me/asset/images/avatar.png">
 <meta property="article:published_time" content="2025-11-17T02:24:46.000Z">
-<meta property="article:modified_time" content="2025-11-18T01:31:31.234Z">
+<meta property="article:modified_time" content="2025-11-19T02:19:01.602Z">
 <meta property="article:author" content="Caint">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://caint0w0.github.io/asset/images/avatar.png">
+<meta name="twitter:image" content="http://www.caint0w0.me/asset/images/avatar.png">
   
   
   
@@ -48,7 +48,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Caint","sameAs":[],"image":"/asset/images/avatar.png"},"dateCreated":"2025-11-17T10:24:46+08:00","dateModified":"2025-11-18T09:31:31+08:00","datePublished":"2025-11-17T10:24:46+08:00","description":"","headline":"Chaos引擎解析","mainEntityOfPage":{"@type":"WebPage","@id":"http://caint0w0.github.io/2025/11/17/Chaos%E5%BC%95%E6%93%8E%E8%A7%A3%E6%9E%90/"},"publisher":{"@type":"Organization","name":"Caint","sameAs":[],"image":"/asset/images/avatar.png","logo":{"@type":"ImageObject","url":"/asset/images/avatar.png"}},"url":"http://caint0w0.github.io/2025/11/17/Chaos%E5%BC%95%E6%93%8E%E8%A7%A3%E6%9E%90/","image":[]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Caint","sameAs":[],"image":"/asset/images/avatar.png"},"dateCreated":"2025-11-17T10:24:46+08:00","dateModified":"2025-11-19T10:19:01+08:00","datePublished":"2025-11-17T10:24:46+08:00","description":"","headline":"Chaos引擎解析1 架构分析","mainEntityOfPage":{"@type":"WebPage","@id":"http://www.caint0w0.me/2025/11/17/Chaos%E5%BC%95%E6%93%8E%E8%A7%A3%E6%9E%90/"},"publisher":{"@type":"Organization","name":"Caint","sameAs":[],"image":"/asset/images/avatar.png","logo":{"@type":"ImageObject","url":"/asset/images/avatar.png"}},"url":"http://www.caint0w0.me/2025/11/17/Chaos%E5%BC%95%E6%93%8E%E8%A7%A3%E6%9E%90/","image":[]}</script>
   
 </head>
 <body>
@@ -67,7 +67,7 @@
 
 
 
-<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2025/11/17/Welcome/"><span class="title">Welcome</span></a><a class="item title" href="/2025/11/17/Chaos%E5%BC%95%E6%93%8E%E8%A7%A3%E6%9E%90/"><span class="title">Chaos引擎解析</span></a></div></widget>
+<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2025/11/17/Chaos%E5%BC%95%E6%93%8E%E8%A7%A3%E6%9E%90/"><span class="title">Chaos引擎解析1 架构分析</span></a><a class="item title" href="/2025/11/17/Welcome/"><span class="title">Welcome</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -80,23 +80,63 @@
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
 <span class="sep"></span><a class="cap breadcrumb" href="/">文章</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-11-17T02:24:46.000Z">2025-11-17</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-11-18T01:31:31.234Z">2025-11-18</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-11-17T02:24:46.000Z">2025-11-17</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-11-19T02:19:01.602Z">2025-11-19</time></span></div></div></div>
     
     <div class="bottom only-title">
       
       <div class="text-area">
-        <h1 class="text title"><span>Chaos引擎解析</span></h1>
+        <h1 class="text title"><span>Chaos引擎解析1 架构分析</span></h1>
         
       </div>
     </div>
     
   </div>
-  </div><article class="md-text content"><h1 id="Chaos引擎解析"><a href="#Chaos引擎解析" class="headerlink" title="Chaos引擎解析"></a>Chaos引擎解析</h1><p>
+  </div><article class="md-text content"><h1 id="1-Chaos的主要类"><a href="#1-Chaos的主要类" class="headerlink" title="1 Chaos的主要类"></a>1 Chaos的主要类</h1><p>这部分架构和各类主要作用主要参考<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/675350348">原文</a></p>
+<p>为了方便查阅先搬到这里</p>
+<h2 id="1-1-主要类图"><a href="#1-1-主要类图" class="headerlink" title="1.1 主要类图"></a>1.1 主要类图</h2><p>
 <a href="ChaosMainClass.png" target="_blank">
     <img src="ChaosMainClass.png">
 </a>
 </p>
 
+
+<h2 id="1-2-物理世界"><a href="#1-2-物理世界" class="headerlink" title="1.2 物理世界"></a>1.2 物理世界</h2><h3 id="1-2-1-UWorld"><a href="#1-2-1-UWorld" class="headerlink" title="1.2.1 UWorld"></a>1.2.1 UWorld</h3><p>UWorld是代表由Actor构成的整个游戏世界，它持有一个FPhysScene来代表物理世界，可以类比为渲染中的FScene，物理世界的步进(Advance)初始也由UWorld::Tick()发起。UWorld与物理相关的功能一般在PhysLevel.cpp中实现。</p>
+<h3 id="1-2-2-FPhysScene"><a href="#1-2-2-FPhysScene" class="headerlink" title="1.2.2 FPhysScene"></a>1.2.2 FPhysScene</h3><p>FPhysScene等价于FPhysScene_Chaos，继承自FChaosScene，是Chaos的首要入口。碰撞事件的注册分发，物理网络同步相关的内容也由其处理（通过IPhysicsReplication） 物理模拟的步进也在该类开始（StartFrame）</p>
+<h3 id="1-2-3-FPhysicsInterface与FPhysicsCommand"><a href="#1-2-3-FPhysicsInterface与FPhysicsCommand" class="headerlink" title="1.2.3 FPhysicsInterface与FPhysicsCommand"></a>1.2.3 FPhysicsInterface与FPhysicsCommand</h3><p>这两个类都是FPhysicsInterface_Chaos的别名，该类提供了大量的辅助功能接口,如FlushScene，IsInScene，CreateShape以及对物理ActorHandle的有锁读写操作等。</p>
+<h3 id="1-2-4-FPhysicsSolver"><a href="#1-2-4-FPhysicsSolver" class="headerlink" title="1.2.4 FPhysicsSolver"></a>1.2.4 FPhysicsSolver</h3><p>FPhysicsSolver等价于FPBDRigidsSolver，继承自FPhysicsSolverBase，虽然以Sovler命名，但该类并不是真正进行解算操作的地方，而是物理结算器与操作数据的进一步封装。 它持有一个FPBDRigidsEvolution类，这才是实际负责物理解算的类；同时还持有FParticlesType（FPBDRigidsSOAs），该类为所有Particle最终的数据集合。</p>
+<blockquote>
+<p>Particle一般翻译成粒子，但是质点可能更为合适，指物理模拟中具有形状和质量的最基本的单位。  </p>
+</blockquote>
+<h3 id="1-2-5-FParticlesType"><a href="#1-2-5-FParticlesType" class="headerlink" title="1.2.5 FParticlesType"></a>1.2.5 FParticlesType</h3><p>实际指向FPBDRigidsSOAs，SOA指Structure of Arrays，一种常见的组织数据的优化方式。该类持有物理场景中所有Particle的数据（Position、Mass、Geometry等）</p>
+<h3 id="1-2-6-FPBDRigidsEvolution"><a href="#1-2-6-FPBDRigidsEvolution" class="headerlink" title="1.2.6 FPBDRigidsEvolution"></a>1.2.6 FPBDRigidsEvolution</h3><p>等价于FPBDRigidsEvolutionGBF，继承自FPBDRigidsEvolutionBase。这里是最终进行物理解算的地方，物理引擎中碰撞检测的Broad Phase、Narrow Phase以及上述的PBD过程中积分，构建约束，求解约束等过程都在这里发生。</p>
+<blockquote>
+<p>GBF是Guendelman，Bridson，Fedkiw的缩写，为Nonconvex Rigid Bodies with Stacking这篇论文的作者，Chaos中使用了文章提出的Shock Propagation Algorithm。  </p>
+</blockquote>
+<h3 id="1-2-7-FChaosMarshallingManager"><a href="#1-2-7-FChaosMarshallingManager" class="headerlink" title="1.2.7 FChaosMarshallingManager"></a>1.2.7 FChaosMarshallingManager</h3><p>Particle数据的管理器，控制从主线程到物理线程的数据同步。核心的数据在FPushPhysicsData与FPullPhysicsData中</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">FChaosMarshallingManager</span> </span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">//push</span></span><br><span class="line">    FPushPhysicsData* ProducerData;</span><br><span class="line">    ...  </span><br><span class="line">    <span class="comment">//pull</span></span><br><span class="line">    FPullPhysicsData* CurPullData; <span class="comment">//the current pull data sim is writing to  ... </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>物理线程与游戏线程间的数据同步被分为Push与Pull两部分，UE5以游戏线程为主视角，Push为将游戏线程上的数据变化推送到物理线程。比如触发了角色的移动，移动组件会将输入转化为Pawn速度与位置的变化，其对应的碰撞体也应该进行更新。</p>
+<h3 id="1-2-8-FPushPhysicsData"><a href="#1-2-8-FPushPhysicsData" class="headerlink" title="1.2.8 FPushPhysicsData"></a>1.2.8 FPushPhysicsData</h3><p>需要从游戏线程的对象推送到物理线程的数据。</p>
+<h3 id="1-2-9-FPullPhysicsData"><a href="#1-2-9-FPullPhysicsData" class="headerlink" title="1.2.9 FPullPhysicsData"></a>1.2.9 FPullPhysicsData</h3><p>物理模拟结束后，需要从物理线程回写到游戏线程对象的数据。</p>
+<blockquote>
+<p>需要注意的是，事实上并不存在一个独立的物理线程，物理任务会被分发到工作线程上处理，后续我们讨论所谓的物理线程时都是指非游戏线程的其他处理物理任务的工作线程。  </p>
+</blockquote>
+<h2 id="1-3-物理Actor"><a href="#1-3-物理Actor" class="headerlink" title="1.3 物理Actor"></a>1.3 物理Actor</h2><h3 id="1-3-1-UPrimitiveComponent"><a href="#1-3-1-UPrimitiveComponent" class="headerlink" title="1.3.1 UPrimitiveComponent"></a>1.3.1 UPrimitiveComponent</h3><p>UPrimitiveComponent为所有持有几何物体的基类，会创建一个FBodyInstance作为其在物理世界中的代表。 无论是UStaticMeshComponent还是USkeletalMeshComponent又或者UCapsuleComponent实际最终都会通过FBodyInstance与物理世界进行交互。此外还有UGeometryCollectionComponent等用于特定物理功能相关的Component，它们会持有额外的物理代理。</p>
+<h3 id="1-3-2-FBodyInstance"><a href="#1-3-2-FBodyInstance" class="headerlink" title="1.3.2 FBodyInstance"></a>1.3.2 FBodyInstance</h3><p>继承自FBodyInstanceCore，物理相关的各项属性与设置都由该类持有，并暴露给编辑器进行设置，引擎代码注释中对FBodyInstance的定义如下：</p>
+<blockquote>
+<p>Container for a physics representation of an object.</p>
+</blockquote>
+<p>FBodyInstance拥有几个重要的属性：</p>
+<ul>
+<li>TWeakObjectPtr<UBodySetupCore> BodySetup<br>//持有全部碰撞相关的设置，用于初始化FBodyInstance</li>
+<li>FBodyInstance* WeldParent<br>//一个BodyInstance所连接的父Bod</li>
+<li>FPhysicsActorHandle ActorHandle<br>//事实上是FSingleParticlePhysicsProxy*，为物理引擎内部BodyInstance的呈现与代理。</li>
+</ul>
+<h3 id="1-3-3-FPhysicsActorHandle"><a href="#1-3-3-FPhysicsActorHandle" class="headerlink" title="1.3.3 FPhysicsActorHandle"></a>1.3.3 FPhysicsActorHandle</h3><p>等价于FSingleParticlePhysicsProxy*，一个需要进行物理解算的对象在物理引擎内被称之为一个Particle，该类作为其代理充当与物理引擎交互的接口。 物理引擎只关注一个物体的几何形状、位置、以及质量等属性，它们由TGeometryParticle持有，这是Game Thread上一个Particle的呈现。此外，Proxy还持有一个TGeometryParticleHandle，这是Particle在物理线程上的Handle。 所以场景中每一个Particle都是由Game Thread上的Geometry Particle和物理线程上的Handle共同代表的，物理线程上具体的数据由FPBDRigidsSOAs持有，Handle通过引用访问它。</p>
+<p>除此之外还有描述破坏集合的FGeometryCollectionPhysicsProxy、描述关节约束的FJointConstraintPhysicsProxy等.</p>
+<h2 id="1-4-小结"><a href="#1-4-小结" class="headerlink" title="1.4 小结"></a>1.4 小结</h2><p>这里我们需要明白Component、BodyInstance、PhysicsProxy、Particle、与ParticleHandle之间的关系：Component是完全的游戏逻辑层面的对象，BodyInstance则是其在物理场景中的代表，PhysicsProxy与Particle代表其持有的各种物理运算相关的数据，这些对象都存在于游戏线程上；ParticleHandle则是Particle在物理线程上的代表，ParticleHandle不再单独的持有一个Particle的各项属性（位置、速度等），而是多个ParticleHandle的数据通过SOA的方式被组织在一起。</p>
+<blockquote>
+<p>Proxy的类型在EPhysicsProxyType枚举中定义，共有9中类型，下文中如无特殊说明，Proxy默认指FSingleParticlePhysicsProxy</p>
+</blockquote>
 </article>
 <div class="article-footer">
     <section id="license">
@@ -122,7 +162,7 @@
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Chaos%E5%BC%95%E6%93%8E%E8%A7%A3%E6%9E%90"><span class="toc-text">Chaos引擎解析</span></a></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a></div></widget>
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Chaos%E7%9A%84%E4%B8%BB%E8%A6%81%E7%B1%BB"><span class="toc-text">1 Chaos的主要类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E4%B8%BB%E8%A6%81%E7%B1%BB%E5%9B%BE"><span class="toc-text">1.1 主要类图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E7%89%A9%E7%90%86%E4%B8%96%E7%95%8C"><span class="toc-text">1.2 物理世界</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-UWorld"><span class="toc-text">1.2.1 UWorld</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2-FPhysScene"><span class="toc-text">1.2.2 FPhysScene</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-3-FPhysicsInterface%E4%B8%8EFPhysicsCommand"><span class="toc-text">1.2.3 FPhysicsInterface与FPhysicsCommand</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-4-FPhysicsSolver"><span class="toc-text">1.2.4 FPhysicsSolver</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-5-FParticlesType"><span class="toc-text">1.2.5 FParticlesType</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-6-FPBDRigidsEvolution"><span class="toc-text">1.2.6 FPBDRigidsEvolution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-7-FChaosMarshallingManager"><span class="toc-text">1.2.7 FChaosMarshallingManager</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-8-FPushPhysicsData"><span class="toc-text">1.2.8 FPushPhysicsData</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-9-FPullPhysicsData"><span class="toc-text">1.2.9 FPullPhysicsData</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E7%89%A9%E7%90%86Actor"><span class="toc-text">1.3 物理Actor</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1-UPrimitiveComponent"><span class="toc-text">1.3.1 UPrimitiveComponent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2-FBodyInstance"><span class="toc-text">1.3.2 FBodyInstance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-3-FPhysicsActorHandle"><span class="toc-text">1.3.3 FPhysicsActorHandle</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E5%B0%8F%E7%BB%93"><span class="toc-text">1.4 小结</span></a></li></ol></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a></div></widget>
 </div></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
