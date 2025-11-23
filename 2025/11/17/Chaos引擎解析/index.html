@@ -71,9 +71,9 @@
 
 
 
-<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2025/11/17/Chaos%E5%BC%95%E6%93%8E%E8%A7%A3%E6%9E%90/"><span class="title">Chaos引擎解析1 架构分析</span></a><a class="item title" href="/2025/11/17/Welcome/"><span class="title">Welcome</span></a></div></widget>
+<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2025/11/17/Welcome/"><span class="title">Welcome</span></a><a class="item title" href="/2025/11/17/Chaos%E5%BC%95%E6%93%8E%E8%A7%A3%E6%9E%90/"><span class="title">Chaos引擎解析1 架构分析</span></a></div></widget>
 </div>
-
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://github.com/Caint0w0" target="_blank" rel="external nofollow noopener noreferrer"><img src="/asset/icons/github.svg" style="fill:#0000FF" /></a></div></footer>
 </div></aside><div class="l_main" id="main">
 
 
@@ -172,6 +172,21 @@
 
 
 
+  <div class="related-wrap md-text" id="comments">
+    <section class='header cmt-title cap theme'>
+      <p>快来参与讨论吧~</p>
+
+    </section>
+    <section class='body cmt-body giscus'>
+      
+
+<svg class="loading" style="vertical-align:middle;fill:currentColor;overflow:hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
+
+<div id="giscus" src="https://giscus.app/client.js" data-repo="Caint0w0/BlogRepo" data-repo-id="R_kgDOQXM0Rw" data-category="Announcements" data-category-id="DIC_kwDOQXM0R84CyGGW" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+
+    </section>
+  </div>
+
 
 
 <footer class="page-footer footnote"><hr><div class="text"><center>
@@ -205,7 +220,7 @@ function show_runtime() {
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Chaos%E7%9A%84%E4%B8%BB%E8%A6%81%E7%B1%BB"><span class="toc-text">1 Chaos的主要类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E4%B8%BB%E8%A6%81%E7%B1%BB%E5%9B%BE"><span class="toc-text">1.1 主要类图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E7%89%A9%E7%90%86%E4%B8%96%E7%95%8C"><span class="toc-text">1.2 物理世界</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-UWorld"><span class="toc-text">1.2.1 UWorld</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2-FPhysScene"><span class="toc-text">1.2.2 FPhysScene</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-3-FPhysicsInterface%E4%B8%8EFPhysicsCommand"><span class="toc-text">1.2.3 FPhysicsInterface与FPhysicsCommand</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-4-FPhysicsSolver"><span class="toc-text">1.2.4 FPhysicsSolver</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-5-FParticlesType"><span class="toc-text">1.2.5 FParticlesType</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-6-FPBDRigidsEvolution"><span class="toc-text">1.2.6 FPBDRigidsEvolution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-7-FChaosMarshallingManager"><span class="toc-text">1.2.7 FChaosMarshallingManager</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-8-FPushPhysicsData"><span class="toc-text">1.2.8 FPushPhysicsData</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-9-FPullPhysicsData"><span class="toc-text">1.2.9 FPullPhysicsData</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E7%89%A9%E7%90%86Actor"><span class="toc-text">1.3 物理Actor</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1-UPrimitiveComponent"><span class="toc-text">1.3.1 UPrimitiveComponent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2-FBodyInstance"><span class="toc-text">1.3.2 FBodyInstance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-3-FPhysicsActorHandle"><span class="toc-text">1.3.3 FPhysicsActorHandle</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E5%B0%8F%E7%BB%93"><span class="toc-text">1.4 小结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">2 初始化</span></a></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a></div></widget>
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Chaos%E7%9A%84%E4%B8%BB%E8%A6%81%E7%B1%BB"><span class="toc-text">1 Chaos的主要类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E4%B8%BB%E8%A6%81%E7%B1%BB%E5%9B%BE"><span class="toc-text">1.1 主要类图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E7%89%A9%E7%90%86%E4%B8%96%E7%95%8C"><span class="toc-text">1.2 物理世界</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-UWorld"><span class="toc-text">1.2.1 UWorld</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2-FPhysScene"><span class="toc-text">1.2.2 FPhysScene</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-3-FPhysicsInterface%E4%B8%8EFPhysicsCommand"><span class="toc-text">1.2.3 FPhysicsInterface与FPhysicsCommand</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-4-FPhysicsSolver"><span class="toc-text">1.2.4 FPhysicsSolver</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-5-FParticlesType"><span class="toc-text">1.2.5 FParticlesType</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-6-FPBDRigidsEvolution"><span class="toc-text">1.2.6 FPBDRigidsEvolution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-7-FChaosMarshallingManager"><span class="toc-text">1.2.7 FChaosMarshallingManager</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-8-FPushPhysicsData"><span class="toc-text">1.2.8 FPushPhysicsData</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-9-FPullPhysicsData"><span class="toc-text">1.2.9 FPullPhysicsData</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E7%89%A9%E7%90%86Actor"><span class="toc-text">1.3 物理Actor</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1-UPrimitiveComponent"><span class="toc-text">1.3.1 UPrimitiveComponent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2-FBodyInstance"><span class="toc-text">1.3.2 FBodyInstance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-3-FPhysicsActorHandle"><span class="toc-text">1.3.3 FPhysicsActorHandle</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E5%B0%8F%E7%BB%93"><span class="toc-text">1.4 小结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">2 初始化</span></a></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M8 10.5h8M8 14h5.5M17 3.338A9.95 9.95 0 0 0 12 2C6.477 2 2 6.477 2 12c0 1.6.376 3.112 1.043 4.453c.178.356.237.763.134 1.148l-.595 2.226a1.3 1.3 0 0 0 1.591 1.592l2.226-.596a1.63 1.63 0 0 1 1.149.133A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10c0-1.821-.487-3.53-1.338-5"/></svg><span>参与讨论</span></a></div></widget>
 </div></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
@@ -700,6 +715,30 @@ function show_runtime() {
 
 
 <!-- optional -->
+
+  <script type="module">
+  const el = document.querySelector('#comments #giscus');
+  util.viewportLazyload(el, load_discus, false);
+
+  function load_discus() {
+    if (!el) return;
+    try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.error(error);
+      }
+      const script = document.createElement('script');
+      script.async = true;
+      for (const key of Object.keys(el.attributes)) {
+        const attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
+  }
+</script>
+
 
 
 
